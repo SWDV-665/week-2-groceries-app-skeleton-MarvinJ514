@@ -1,20 +1,26 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>{{title}}</ion-title>
+  <ion-navbar class="navbar">
+    <ion-title text-center>{{title}}</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
+
   <h2>Welcome to Ionic Groceries App!</h2>
-  <h3>Current List:</h3>
-  <ion-list>
-    <ion-item *ngFor="let item of items; let i = index">
+  <h4 class = "no-item" *ngIf="loadItems().length === 0" text-center> Your list is empty!</h4>
+
+  <ion-list class = "list">
+    <ion-item *ngFor="let item of loadItems(); let i = index">
       <ion-label>{{item.name}}<p>{{item.brand}}</p></ion-label>
       <ion-label>{{item.quantity}}</ion-label>
-      <ion-checkbox (click)="removeItem(item, i)" slot="start"></ion-checkbox>
+      <ion-checkbox (click)="removeItem(item, i)" slot="start" color="danger"></ion-checkbox>
+      <button (click)="editItem(item, i)" ion-button outline item-end icon-end color="primary">
+        Edit
+        <ion-icon name="create"></ion-icon>
+      </button>
     </ion-item>
   </ion-list>
   <ion-fab bottom center>
-      <button (click)="addItem()" ion-fab mini><ion-icon name="add"></ion-icon></button>
+      <button (click)="addItem()" ion-fab mini color="secondary"><ion-icon name="add"></ion-icon></button>
   </ion-fab>
 </ion-content>

@@ -1,3 +1,9 @@
 page-home {
 
+    h4.no-item{
+        color: map-get($colors, 'empty');
+    }
+    ion-title{
+        color: #C8FFCD;
+    }
 }
