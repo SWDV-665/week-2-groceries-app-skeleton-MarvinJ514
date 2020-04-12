@@ -16,7 +16,10 @@
       <ion-checkbox (click)="removeItem(item, i)" slot="start" color="danger"></ion-checkbox>
       <button (click)="editItem(item, i)" ion-button outline item-end icon-end color="primary">
         Edit
-        <ion-icon name="create"></ion-icon>
+        <ion-icon name="settings"></ion-icon>
+      </button>
+      <button (click)="shareItem(item, i)" ion-button outline item-end color="dark">
+        <ion-icon name="share"></ion-icon>
       </button>
     </ion-item>
   </ion-list>
