@@ -13,16 +13,31 @@ import { SocialSharing } from '@ionic-native/social-sharing';
 export class HomePage {
 
   title = "Grocery";
+  items = [];
+  errorMessage: string;
 
   constructor(public navCtrl: NavController, public toastCtrl: ToastController, public alertCtrl: AlertController, public dataSerivce: GroceriesServiceProvider, public InputDialogSerivce: InputDialogServiceProvider, public SocialSharing: SocialSharing) {
+    dataSerivce.dataChanged$.subscribe((dataChanged: boolean) => {
+      this.loadItems();
+    });
+  }
 
+  ionViewDidLoad(){
+    this.loadItems();
   }
 
   loadItems(){
-    return this.dataSerivce.getItems();
+    this.dataSerivce.getItems()
+      .subscribe(
+        items => this.items = items,
+        error => this.errorMessage = <any>error);
+    /**return this.dataSerivce.getItems();**/
   }
 
-  removeItem(item, index) {
+  removeItem(id){
+    this.dataSerivce.removeItem(id);
+  }
+  /**removeItem(item, index) {
     console.log("remove item -", item, index);
     const toast = this.toastCtrl.create({
       message: "Removing item - " + item.name + "...",
@@ -31,7 +46,7 @@ export class HomePage {
     toast.present();
 
     this.dataSerivce.removeItem(index);
-  }
+  }**/
 
   shareItem(item, index) {
     console.log("Sharing item -", item, index);
