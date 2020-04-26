@@ -12,7 +12,7 @@ import { GroceriesServiceProvider } from '../../providers/groceries-service/groc
 @Injectable()
 export class InputDialogServiceProvider {
 
-  constructor(public alertCtrl: AlertController, public dataSerivce: GroceriesServiceProvider) {
+  constructor(public alertCtrl: AlertController, public dataService: GroceriesServiceProvider) {
     console.log('Hello InputDialogServiceProvider Provider');
   }
 
@@ -52,10 +52,10 @@ export class InputDialogServiceProvider {
               item.name = data.name;
               item.brand = data.brand;
               item.quantity = data.quantity;
-              this.dataSerivce.editItem(item, index);
+              this.dataService.editItem(item, index);
             }
             else {
-              this.dataSerivce.addItem(data);
+              this.dataService.addItem(data);
             }
           }
         }

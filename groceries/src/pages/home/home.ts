@@ -16,8 +16,8 @@ export class HomePage {
   items = [];
   errorMessage: string;
 
-  constructor(public navCtrl: NavController, public toastCtrl: ToastController, public alertCtrl: AlertController, public dataSerivce: GroceriesServiceProvider, public InputDialogSerivce: InputDialogServiceProvider, public SocialSharing: SocialSharing) {
-    dataSerivce.dataChanged$.subscribe((dataChanged: boolean) => {
+  constructor(public navCtrl: NavController, public toastCtrl: ToastController, public alertCtrl: AlertController, public dataService: GroceriesServiceProvider, public InputDialogService: InputDialogServiceProvider, public SocialSharing: SocialSharing) {
+    dataService.dataChanged$.subscribe((dataChanged: boolean) => {
       this.loadItems();
     });
   }
@@ -27,26 +27,19 @@ export class HomePage {
   }
 
   loadItems(){
-    this.dataSerivce.getItems()
+    this.dataService.getItems()
       .subscribe(
         items => this.items = items,
         error => this.errorMessage = <any>error);
-    /**return this.dataSerivce.getItems();**/
   }
 
   removeItem(id){
-    this.dataSerivce.removeItem(id);
+    this.dataService.removeItem(id);
   }
-  /**removeItem(item, index) {
-    console.log("remove item -", item, index);
-    const toast = this.toastCtrl.create({
-      message: "Removing item - " + item.name + "...",
-      duration: 3000
-    });
-    toast.present();
+<<<<<<< Updated upstream
+=======
 
-    this.dataSerivce.removeItem(index);
-  }**/
+>>>>>>> Stashed changes
 
   shareItem(item, index) {
     console.log("Sharing item -", item, index);
@@ -75,12 +68,12 @@ export class HomePage {
       duration: 3000
     });
     toast.present();
-    this.InputDialogSerivce.showPrompt(item, index);
+    this.InputDialogService.showPrompt(item, index);
   }
   
-  addItem() {
+  addItem(item) {
     console.log("adding item");
-    this.InputDialogSerivce.showPrompt();
+    this.InputDialogService.showPrompt(item);
   }
  
 }

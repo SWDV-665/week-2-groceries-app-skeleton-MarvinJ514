@@ -1,9 +1,13 @@
 
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Subject } from 'rxjs/Subject';
 import { Observable } from 'rxjs/Observable';
+<<<<<<< Updated upstream
 import {map, catchError } from 'rxjs/operators';
+=======
+import { map, catchError } from 'rxjs/operators';
+>>>>>>> Stashed changes
+import { Subject } from 'rxjs';
 /*
   Generated class for the GroceriesServiceProvider provider.
 
@@ -14,12 +18,14 @@ import {map, catchError } from 'rxjs/operators';
 export class GroceriesServiceProvider {
 
   items: any = [];
-
   dataChanged$: Observable<boolean>;
-
   private dataChangeSubject: Subject<boolean>;
+<<<<<<< Updated upstream
 
-  baseURL = "http://localhost:8080"
+  baseURL = "https://groceries-app-server.herokuapp.com/"
+=======
+  baseURL = "https://groceries-app-server.herokuapp.com/";
+>>>>>>> Stashed changes
 
   constructor(public http: HttpClient) {
     console.log('Hello GroceriesServiceProvider Provider');
@@ -28,12 +34,15 @@ export class GroceriesServiceProvider {
     this.dataChanged$ = this.dataChangeSubject.asObservable();
   }
 
-  getItems(){
+<<<<<<< Updated upstream
+  getItems(): Observable<object[]>{
+=======
+  getItems(): Observable<object[]> {
+>>>>>>> Stashed changes
     return this.http.get(this.baseURL + 'api/groceries').pipe(
       map(this.extractData),
       catchError(this.handleError)
     );
-    /**return this.items;**/
   }
 
   private extractData(res: Response){
@@ -59,17 +68,14 @@ export class GroceriesServiceProvider {
       this.items = res;
       this.dataChangeSubject.next(true);
     });
-    /**this.items.splice(index, 1);**/
   }
   addItem(item){
     this.http.post(this.baseURL + "/api/groceries", item).subscribe( res => {
       this.items = res;
       this.dataChangeSubject.next(true);
-    })
+    });
   }
-  /**addItem(item){
-    this.items.push(item);
-  }**/
+
 
   editItem(item,index){
     console.log("Editing item = ", item);
@@ -78,7 +84,5 @@ export class GroceriesServiceProvider {
       this.dataChangeSubject.next(true);
     });
   }
-  /**editItem(item,index){
-    this.items[index] = item;
-  }**/
+
 }

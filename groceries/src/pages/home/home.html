@@ -7,7 +7,7 @@
 <ion-content padding>
 
   <h2>Welcome to Ionic Groceries App!</h2>
-  <h4 class = "no-item" *ngIf="loadItems().length === 0" text-center> Your list is empty!</h4>
+  <h4 class = "no-item" *ngIf="items.length === 0" text-center> Your list is empty!</h4>
 
   <ion-list class = "list">
     <ion-item *ngFor="let item of loadItems(); let i = index">
