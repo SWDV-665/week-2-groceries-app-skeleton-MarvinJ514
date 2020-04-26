@@ -2,11 +2,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
-<<<<<<< Updated upstream
-import {map, catchError } from 'rxjs/operators';
-=======
 import { map, catchError } from 'rxjs/operators';
->>>>>>> Stashed changes
 import { Subject } from 'rxjs';
 /*
   Generated class for the GroceriesServiceProvider provider.
@@ -20,12 +16,8 @@ export class GroceriesServiceProvider {
   items: any = [];
   dataChanged$: Observable<boolean>;
   private dataChangeSubject: Subject<boolean>;
-<<<<<<< Updated upstream
-
   baseURL = "https://groceries-app-server.herokuapp.com/"
-=======
-  baseURL = "https://groceries-app-server.herokuapp.com/";
->>>>>>> Stashed changes
+
 
   constructor(public http: HttpClient) {
     console.log('Hello GroceriesServiceProvider Provider');
@@ -34,11 +26,7 @@ export class GroceriesServiceProvider {
     this.dataChanged$ = this.dataChangeSubject.asObservable();
   }
 
-<<<<<<< Updated upstream
   getItems(): Observable<object[]>{
-=======
-  getItems(): Observable<object[]> {
->>>>>>> Stashed changes
     return this.http.get(this.baseURL + 'api/groceries').pipe(
       map(this.extractData),
       catchError(this.handleError)
